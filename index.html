@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <base target="_top">
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@4.12.22/dist/full.min.css" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <?!= include('css'); ?>
+  </head>
+  <body class='m-4'>
+    <p class='mb-4'>◾️「START」ボタンを押して2週後のLT会発表者を決めてください！</p>
+    <div class='flex flex-row' id='app'>
+      <div class='basis-2/4 mr-8'>
+        <table class='table text-center'>
+          <thead>
+            <tr>
+              <th>名前</th>
+              <th>発表回数</th>
+              <th>今回の発表者</th>
+              <th>次回の発表者</th>
+            </tr>
+          </thead>
+          <tbody>
+            <? members.map((member) => { ?>
+            <tr>
+              <td><?!= member.name ?></td>
+              <td><?!= member.presentationCount ?></td>
+              <td><? if(member.isTodayPresenter) { ?>◎<? } ?></td>
+              <td><? if(member.isNextWeekPresenter) { ?>◎<? } ?></td>
+            </tr>
+            <? }); ?>
+          </tbody>
+        </table>
+      </div>
+      <div class='basis-1/4'>
+        <div class='h-40 w-full rounded-lg border border-gray-400 mb-4 flex justify-center items-center'>
+          <div class='text-3xl font-semibold text-color'>{{member}}</div>
+        </div>
+        <button class='btn btn-block' @click='choose_member'>START</button>
+      </div>
+    </div>
+    <?!= include('js'); ?>
+  </body>
+</html>

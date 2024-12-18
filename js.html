@@ -1,0 +1,22 @@
+<script src='https://cdn.jsdelivr.net/npm/vue/dist/vue.js'></script>
+<script>
+  const vm = new Vue({
+    el: '#app',
+    data: {
+      member: null
+    },
+    methods: {
+      choose_member: function () {
+        google.script.run
+          .withSuccessHandler(function (member) {
+            console.log('success: ' + JSON.stringify(member));
+            vm.member = member;
+          })
+          .withFailureHandler(function (member) {
+            console.log('error: ' + JSON.stringify(member));
+          })
+          .doPost();
+      }
+    }
+  })
+</script>
